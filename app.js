@@ -52,7 +52,7 @@ app.use((req, res, next) => {
   }
   const user = users.find((u) => u.token === authorization)
   if (!user) {
-    res.status(401);
+    res.status = 401;
     return res.send({ errors: ["Not Authorised"] })
   }
   req.user = user;
@@ -64,10 +64,10 @@ app.get('/api/messages', (req, res) => {
 });
 
 app.get('/api/messages/:id', (req, res) => {
-  const matched = messages.filter((message) => message.id === req.params.id)
-  if (matched.length === 0) {
-    res.statusMessage = "Message not found";
-    return res.sendStatus(404);
+  const message = messages.find((m) => m.id === req.params.id)
+  if (!message) {
+    res.status = 404;
+    return res.send({ errors: ['Message not found'] });
   }
   res.send(matched[0]);
 });
