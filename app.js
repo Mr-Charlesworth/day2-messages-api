@@ -2,8 +2,11 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import { check, validationResult } from 'express-validator';
 import { v4 as uuidv4 } from 'uuid';
+import cors from 'cors';
 
 const app = express();
+
+app.use(cors())
 
 let messages = [];
 let users = [];
